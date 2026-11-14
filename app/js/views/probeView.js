@@ -1,6 +1,6 @@
 // Ergebnis des Probe-Tests: Note nach Schweizer Skala und Liste der Fehler mit Lösung.
 
-import { h } from '../ui.js';
+import { h, mascot } from '../ui.js';
 import { formatGrade } from '../prep.js';
 import { speakFr, speakText, stopSpeaking, canSpeak } from '../speech.js';
 
@@ -37,7 +37,7 @@ export function renderProbe(root, ctx, { total, points, grade, rows }) {
 
   root.replaceChildren(
     h('div', { class: 'result' },
-      h('div', { class: 'fox', 'aria-hidden': 'true' }, '🦊'),
+      h('div', { class: 'fox', 'aria-hidden': 'true' }, mascot()),
       h('h1', {}, 'Probe-Test geschafft'),
       h('div', { class: 'reward' },
         h('div', { class: 'grade-label' }, 'Deine Note'),

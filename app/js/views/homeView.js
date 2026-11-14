@@ -1,6 +1,6 @@
 // Startseite: Lernziel wählen, Richtung wählen, losgehen.
 
-import { h, progressBar } from '../ui.js';
+import { h, progressBar, mascot } from '../ui.js';
 import { pickSession, learnedShare, isDue, keyOf } from '../srs.js';
 import { canSpeak } from '../speech.js';
 import { levelInfo, streakFor, dayKey, formatDay } from '../score.js';
@@ -139,7 +139,7 @@ export function renderHome(root, ctx) {
 
     const page = h('div', { class: 'home' },
       h('header', { class: 'topbar' },
-        h('div', { class: 'brand' }, h('span', { class: 'fox', 'aria-hidden': 'true' }, '🦊'), h('span', {}, 'FrenchFox')),
+        h('div', { class: 'brand' }, h('span', { class: 'fox', 'aria-hidden': 'true' }, mascot()), h('span', {}, 'FrenchFox')),
         h('div', { class: 'topbar-actions' },
           h('button', { class: 'icon-btn', 'aria-label': 'Anleitung', onClick: () => show('help') }, '?'),
           canSpeak && h('button', {

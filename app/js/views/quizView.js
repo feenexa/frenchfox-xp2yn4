@@ -3,7 +3,7 @@
 // Auch für die Testvorbereitung: «practice» (Üben bis es sitzt, Richtung je Wort) und
 // «probe» (Probe-Test: getippt, ohne Rückmeldung, mit Note am Ende).
 
-import { h, progressBar, pick } from '../ui.js';
+import { h, progressBar, pick, mascot } from '../ui.js';
 import { makeChoices, checkAnswer, acceptedAnswers, questionText, solutionText, answerLang } from '../quiz.js';
 import { review, keyOf, needsPractice } from '../srs.js';
 import {
@@ -117,7 +117,7 @@ export function renderQuiz(root, ctx, { items, direction = 'de-fr', dirs = null,
     const gainEl = h('span', { class: pendingGain ? 'gain pop' : 'gain', 'aria-hidden': 'true' }, pendingGain);
     pendingGain = '';
     const pointsChip = h('div', { class: 'points', 'aria-label': 'Punkte dieser Runde' }, '⭐ ', pointsNum, gainEl);
-    const fox = h('div', { class: 'fox', 'aria-hidden': 'true' }, '🦊');
+    const fox = h('div', { class: 'fox', 'aria-hidden': 'true' }, mascot());
     const feedback = h('p', { class: 'feedback', role: 'status' });
     const nextBtn = h('button', {
       class: 'btn btn-primary',

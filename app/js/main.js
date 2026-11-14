@@ -1,7 +1,7 @@
 // Einstieg: lädt die Wortlisten, öffnet den Speicher und schaltet zwischen den Ansichten um.
 
 import { createStore } from './store.js';
-import { h } from './ui.js';
+import { h, mascot } from './ui.js';
 import { pickPractice, buildProbe } from './prep.js';
 import { renderHome } from './views/homeView.js';
 import { renderQuiz } from './views/quizView.js';
@@ -56,7 +56,7 @@ function buildScopes(units) {
 function fail(message) {
   root.replaceChildren(
     h('div', { class: 'notice' },
-      h('div', { class: 'fox', style: 'font-size:80px' }, '🦊'),
+      h('div', { class: 'fox', style: 'font-size:80px' }, mascot()),
       h('h1', {}, 'Oh, das hat nicht geklappt'),
       h('p', {}, message),
       h('button', { class: 'btn btn-primary', onClick: () => location.reload() }, 'Nochmal versuchen'),

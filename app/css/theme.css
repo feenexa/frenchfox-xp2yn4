@@ -320,3 +320,6 @@ h1, h2, p { margin: 0; }
   .panel { padding: 16px; }
   .brand { font-size: 26px; }
 }
+
+/* Maskottchen: das Logo als Bild, so gross wie die Schrift des umgebenden Elements */
+.fox img { width: 1em; height: 1em; display: block; border-radius: 22%; object-fit: cover; box-shadow: var(--shadow); }

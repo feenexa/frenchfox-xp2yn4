@@ -26,6 +26,7 @@ const SHELL = [
   'js/views/probeView.js',
   'js/views/helpView.js',
   'icons/icon-192.png',
+  'icons/logo.png',
   'icons/icon-512.png',
   'icons/apple-touch-icon.png',
   'data/units/index.json',

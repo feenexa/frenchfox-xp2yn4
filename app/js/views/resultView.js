@@ -1,6 +1,6 @@
 // Ergebnis einer Runde: Punkte, Serie, Level und die Wörter zum Nachüben.
 
-import { h, progressBar } from '../ui.js';
+import { h, progressBar, mascot } from '../ui.js';
 import { speakFr, speakText, stopSpeaking, canSpeak } from '../speech.js';
 import { readiness } from '../prep.js';
 
@@ -91,7 +91,7 @@ export function renderResult(root, ctx, {
 
   root.replaceChildren(
     h('div', { class: 'result' },
-      h('div', { class: 'fox', 'aria-hidden': 'true' }, '🦊'),
+      h('div', { class: 'fox', 'aria-hidden': 'true' }, mascot()),
       h('h1', {}, headline(right, total)),
       h('p', { class: 'score' }, mode === 'cards'
         ? `${right} von ${total} gleich gewusst`

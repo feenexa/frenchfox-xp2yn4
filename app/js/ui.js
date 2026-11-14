@@ -27,6 +27,17 @@ export function progressBar(fraction, label) {
   return h('div', { class: 'bar', role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': pct, 'aria-label': label }, fill);
 }
 
+/** Das Logo als dekoratives Bild. Die Grösse folgt der Schriftgrösse des Elternelements (siehe «.fox img» im CSS). */
+export function mascot() {
+  const img = document.createElement('img');
+  img.src = 'icons/logo.png';
+  img.alt = '';
+  img.decoding = 'async';
+  // Rückfall, falls das Bild fehlt: das Fuchs-Emoji
+  img.addEventListener('error', () => img.replaceWith(document.createTextNode('🦊')));
+  return img;
+}
+
 export function pick(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
