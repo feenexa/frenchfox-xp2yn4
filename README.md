@@ -7,6 +7,10 @@ Deutsch ↔ Französisch, Auswählen, Tippen und Karteikarten, Wiederholungsplan
 - Der Fortschritt bleibt im Browser des Geräts (`localStorage`), es gibt kein Konto.
 - Läuft als App auf dem Home-Bildschirm und nach dem ersten Öffnen offline.
 
+## Hinweis zu den Inhalten
+
+FrenchFox ist eine private, nicht kommerzielle Lernhilfe. Die Wörter folgen dem Lehrmittel «dis donc!»; die Rechte an den Inhalten liegen bei den Rechteinhabern. FrenchFox steht in keiner Verbindung zum Verlag.
+
 ## Lokal ausprobieren
 
 ```bash

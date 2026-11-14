@@ -44,8 +44,11 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
+    // Alle GitHub-Pages-Seiten eines Accounts teilen sich eine Adresse (und damit die Speicher).
+    // Darum nur eigene, alte Speicher löschen und die anderer Apps in Ruhe lassen.
     for (const key of await caches.keys()) {
-      if (key !== CACHE) await caches.delete(key);
+      const mine = key.startsWith('frenchfox-') || key === 'voci-app';
+      if (mine && key !== CACHE) await caches.delete(key);
     }
     await self.clients.claim();
   })());

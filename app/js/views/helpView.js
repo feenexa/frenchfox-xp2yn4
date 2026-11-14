@@ -2,7 +2,7 @@
 // Zahlen kommen aus help.js (und damit aus den Konstanten der Regeln).
 
 import { h } from '../ui.js';
-import { pointRows, pointRules, streakRules, levelRows, boxRows, prepRules } from '../help.js';
+import { pointRows, pointRules, streakRules, levelRows, boxRows, prepRules, LEGAL_NOTICE } from '../help.js';
 
 const list = (items) => h('ul', { class: 'help-list' }, items.map((t) => h('li', {}, t)));
 const table = (head, rows) => h('table', { class: 'help-table' },
@@ -59,6 +59,7 @@ export function renderHelp(root, ctx) {
           'Der Fortschritt steht nur auf diesem Gerät. Unter «Sicherung und Home-Bildschirm» auf der Startseite kannst du ihn als Datei sichern und wieder laden.',
           'Mit «Teilen» → «Zum Home-Bildschirm» wird die App zu einem eigenen Symbol. Dort bleibt der Fortschritt besser erhalten.',
           'Die Wörter stammen aus «dis donc!». Neue Wortlisten ergänzen die Eltern.',
+          LEGAL_NOTICE,
         ]))),
   );
 }

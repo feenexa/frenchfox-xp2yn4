@@ -8,6 +8,9 @@ import { SURE_STREAK, SURE_BOX } from './prep.js';
 
 const pct = (x) => `${Math.round(x * 100)} %`;
 
+/** Hinweis zu den Inhalten. Steht auf der Startseite, in der Anleitung und in der README (Test prüft das). */
+export const LEGAL_NOTICE = 'FrenchFox ist eine private, nicht kommerzielle Lernhilfe. Die Wörter folgen dem Lehrmittel «dis donc!»; die Rechte an den Inhalten liegen bei den Rechteinhabern. FrenchFox steht in keiner Verbindung zum Verlag.';
+
 /** Punkte je Übungsart: [Beschreibung, Punkte] */
 export function pointRows() {
   return [

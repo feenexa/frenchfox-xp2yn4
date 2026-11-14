@@ -97,8 +97,10 @@ test('nicht angefasst werden: POST, fremde Adressen, Sprachtest', async () => {
   assert.equal((await dispatch('fetch', get('/test_speech.html'))).handled, false);
 });
 
-test('activate: alte Speicher werden entfernt, der aktuelle bleibt', async () => {
-  stores.set('voci-alt', new FakeCache());
+test('activate: eigene alte Speicher werden entfernt, der aktuelle und fremde bleiben', async () => {
+  stores.set('voci-app', new FakeCache()); // früherer Name der App
+  stores.set('frenchfox-alt', new FakeCache());
+  stores.set('english-app', new FakeCache()); // andere App unter derselben Adresse
   await dispatch('activate');
-  assert.deepEqual([...stores.keys()], ['frenchfox-app']);
+  assert.deepEqual([...stores.keys()].sort(), ['english-app', 'frenchfox-app']);
 });

@@ -34,6 +34,20 @@ test('Anleitung: Wiederholungsplan entspricht den Abständen', () => {
   assert.equal(rows[4][1], `nach ${INTERVAL_DAYS[5]} Tagen wieder`);
 });
 
+test('Hinweis zu den Inhalten: derselbe Text in der Anleitung, auf der Startseite und in der README', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { LEGAL_NOTICE } = await import('../app/js/help.js');
+  assert.match(LEGAL_NOTICE, /private, nicht kommerzielle Lernhilfe/);
+  assert.match(LEGAL_NOTICE, /Rechteinhabern/);
+  assert.match(LEGAL_NOTICE, /keiner Verbindung zum Verlag/);
+  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
+  assert.ok(readme.includes(LEGAL_NOTICE), 'README enthält den Hinweis nicht wortgleich');
+  for (const view of ['homeView', 'helpView']) {
+    const src = readFileSync(new URL(`../app/js/views/${view}.js`, import.meta.url), 'utf8');
+    assert.ok(src.includes('LEGAL_NOTICE'), `${view} zeigt den Hinweis nicht`);
+  }
+});
+
 test('Anleitung: Testvorbereitung nennt die Bedingung «sitzt»', () => {
   assert.match(prepRules().join(' '), /2-mal hintereinander/);
 });

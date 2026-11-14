@@ -5,6 +5,7 @@ import { pickSession, learnedShare, isDue, keyOf } from '../srs.js';
 import { canSpeak } from '../speech.js';
 import { levelInfo, streakFor, dayKey, formatDay } from '../score.js';
 import { readiness, countdownText } from '../prep.js';
+import { LEGAL_NOTICE } from '../help.js';
 
 const isStandalone = () => window.navigator.standalone === true || window.matchMedia?.('(display-mode: standalone)').matches;
 const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -177,6 +178,7 @@ export function renderHome(root, ctx) {
           backupSection(),
         ),
       ),
+      h('p', { class: 'legal' }, LEGAL_NOTICE),
     );
     root.replaceChildren(page);
   }
