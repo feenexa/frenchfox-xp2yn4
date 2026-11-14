@@ -1,0 +1,28 @@
+# Veröffentlicht werden nur die App (app/), die Tests, serve.py, package.json und die README.
+# Projektdokumentation und Arbeitsdateien bleiben lokal.
+CLAUDE.md
+CONTEXT.md
+TODO.md
+DESIGN.md
+UIUX_GUIDE.md
+README.txt
+*_TEMPLATE.md
+gitignore.template
+requirements.txt
+docs/
+snippets/
+assets/
+.claude/
+.scratch/
+
+# Fortschritt, Sicherungen und Geheimnisse nie veröffentlichen
+*sicherung*.json
+.env
+.env.*
+secrets.toml
+*.db
+*.pem
+
+# Sonstiges
+node_modules/
+.DS_Store

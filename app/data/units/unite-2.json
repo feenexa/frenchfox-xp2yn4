@@ -1,0 +1,61 @@
+{
+  "id": "u2",
+  "title": "Unité 2",
+  "source": "dis donc! Unité 2, Vocabulaire, Fotos 2026-11-13 und 2026-11-14",
+  "lernziele": [
+    {
+      "id": "lz2",
+      "title": "Lernziel 2",
+      "items": [
+        {"id": "u2-lz2-01", "fr": "être", "frForms": ["être"], "de": ["sein"], "type": "verb", "marked": true, "example": "Mes copains sont très sympathiques."},
+        {"id": "u2-lz2-02", "fr": "sympathique/-", "frForms": ["sympathique"], "de": ["sympathisch"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-03", "fr": "original/e", "frForms": ["original", "originale"], "de": ["originell"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-04", "fr": "généreux/euse", "frForms": ["généreux", "généreuse"], "de": ["grosszügig"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-05", "fr": "compréhensif/ive", "frForms": ["compréhensif", "compréhensive"], "de": ["verständnisvoll"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-06", "fr": "sportif/ive", "frForms": ["sportif", "sportive"], "de": ["sportlich"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-07", "fr": "joyeux/euse", "frForms": ["joyeux", "joyeuse"], "de": ["fröhlich"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-08", "fr": "beau/belle", "frForms": ["beau", "belle"], "de": ["schön"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-09", "fr": "patient/e", "frForms": ["patient", "patiente"], "de": ["geduldig"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-10", "fr": "honnête/-", "frForms": ["honnête"], "de": ["ehrlich", "aufrichtig", "anständig"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-11", "fr": "attentif/ive", "frForms": ["attentif", "attentive"], "de": ["aufmerksam"], "type": "adj", "marked": false},
+        {"id": "u2-lz2-12", "fr": "respectueux/euse", "frForms": ["respectueux", "respectueuse"], "de": ["respektvoll"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-13", "fr": "ordonné/e", "frForms": ["ordonné", "ordonnée"], "de": ["ordentlich"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-14", "fr": "travailleur/travailleuse", "frForms": ["travailleur", "travailleuse"], "de": ["fleissig"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-15", "fr": "paresseux/euse", "frForms": ["paresseux", "paresseuse"], "de": ["faul"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-16", "fr": "bavard/e", "frForms": ["bavard", "bavarde"], "de": ["geschwätzig", "gesprächig", "redselig"], "type": "adj", "marked": true},
+        {"id": "u2-lz2-17", "fr": "j’aimerais", "frForms": ["j’aimerais"], "de": ["ich hätte gerne", "ich würde gerne"], "type": "phrase", "marked": true},
+        {"id": "u2-lz2-18", "fr": "très", "frForms": ["très"], "de": ["sehr"], "type": "word", "marked": true},
+        {"id": "u2-lz2-19", "fr": "un peu", "frForms": ["un peu"], "de": ["ein bisschen"], "type": "phrase", "marked": true},
+        {"id": "u2-lz2-20", "fr": "comme moi", "frForms": ["comme moi"], "de": ["wie ich"], "type": "phrase", "marked": true}
+      ]
+    },
+    {
+      "id": "lz3",
+      "title": "Lernziel 3",
+      "items": [
+        {"id": "u2-lz3-01", "fr": "Je vais à la piscine.", "frForms": ["Je vais à la piscine."], "de": ["Ich gehe ins Schwimmbad."], "type": "sentence", "marked": true},
+        {"id": "u2-lz3-02", "fr": "Il va au cinéma.", "frForms": ["Il va au cinéma."], "de": ["Er geht ins Kino."], "type": "sentence", "marked": true},
+        {"id": "u2-lz3-03", "fr": "Nous allons en ville.", "frForms": ["Nous allons en ville."], "de": ["Wir gehen in die Stadt."], "type": "sentence", "marked": true},
+        {"id": "u2-lz3-04", "fr": "Nous allons au bord du lac.", "frForms": ["Nous allons au bord du lac."], "de": ["Wir gehen an den See."], "type": "sentence", "marked": true},
+        {"id": "u2-lz3-05", "fr": "Je vais au match de hockey.", "frForms": ["Je vais au match de hockey."], "de": ["Ich gehe an den Hockeymatch."], "type": "sentence", "marked": true},
+        {"id": "u2-lz3-06", "fr": "chez", "frForms": ["chez"], "de": ["zu", "bei"], "type": "word", "marked": true},
+        {"id": "u2-lz3-07", "fr": "faire", "frForms": ["faire"], "de": ["machen"], "type": "verb", "marked": false},
+        {"id": "u2-lz3-08", "fr": "faire du foot", "frForms": ["faire du foot"], "de": ["Fussball spielen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-09", "fr": "faire de la danse", "frForms": ["faire de la danse"], "de": ["tanzen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-10", "fr": "faire du vélo", "frForms": ["faire du vélo"], "de": ["Fahrrad fahren"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-11", "fr": "faire des grillades", "frForms": ["faire des grillades"], "de": ["grillieren", "bräteln"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-12", "fr": "faire la fête", "frForms": ["faire la fête"], "de": ["feiern", "Party machen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-13", "fr": "faire la cuisine", "frForms": ["faire la cuisine"], "de": ["kochen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-14", "fr": "détester", "frForms": ["détester"], "de": ["hassen"], "type": "verb", "marked": false},
+        {"id": "u2-lz3-15", "fr": "faire de la luge", "frForms": ["faire de la luge"], "de": ["schlitteln"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-16", "fr": "faire de l’équitation", "frForms": ["faire de l’équitation"], "de": ["reiten"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-17", "fr": "regarder un film", "frForms": ["regarder un film"], "de": ["einen Film schauen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-18", "fr": "écouter de la musique", "frForms": ["écouter de la musique"], "de": ["Musik hören"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-19", "fr": "jouer à l’ordinateur", "frForms": ["jouer à l’ordinateur"], "de": ["am Computer spielen", "Computerspiele machen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-20", "fr": "jouer du piano", "frForms": ["jouer du piano"], "de": ["Klavier spielen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-21", "fr": "jouer de la guitare", "frForms": ["jouer de la guitare"], "de": ["Gitarre spielen"], "type": "phrase", "marked": false},
+        {"id": "u2-lz3-22", "fr": "ensemble", "frForms": ["ensemble"], "de": ["zusammen", "gemeinsam"], "type": "word", "marked": false}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>FrenchFox Sprachtest</title>
+<style>
+  :root { --bg:#fff8ee; --ink:#2b2140; --accent:#ff7a3d; --ok:#1f9d55; --bad:#c0392b; --card:#ffffff; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,sans-serif; }
+  h1 { font-size:22px; margin:0 0 12px; }
+  .card { background:var(--card); border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  button { min-height:48px; padding:12px 18px; font-size:17px; font-weight:700; border:0; border-radius:12px; background:var(--accent); color:#fff; width:100%; margin-top:8px; }
+  button.alt { background:#5b4b8a; }
+  select { width:100%; min-height:48px; font-size:16px; }
+  .row { display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid #eee; padding:4px 0; }
+  .ok { color:var(--ok); font-weight:700; } .bad { color:var(--bad); font-weight:700; }
+  #log { white-space:pre-wrap; font:14px/1.4 ui-monospace,monospace; }
+</style>
+</head>
+<body>
+<h1>Sprachtest für Französisch</h1>
+
+<div class="card">
+  <strong>1. Was kann dieses Gerät?</strong>
+  <div id="caps"></div>
+</div>
+
+<div class="card">
+  <strong>2. Vorlesen</strong>
+  <p>Stimme:</p>
+  <select id="voice"></select>
+  <button id="speakBtn">Vorlesen: «Je vais à la piscine.»</button>
+  <button class="alt" id="speakBtn2">Vorlesen: «joyeux, joyeuse»</button>
+</div>
+
+<div class="card">
+  <strong>3. Sprechen</strong>
+  <p>Tippe, sage dann laut «la piscine».</p>
+  <button id="recBtn">Sprechen starten</button>
+  <p id="recOut"></p>
+</div>
+
+<div class="card">
+  <strong>Protokoll</strong>
+  <div id="log"></div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const log = (m) => { $('log').textContent += m + '\n'; };
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+function cap(name, ok, note) {
+  const d = document.createElement('div');
+  d.className = 'row';
+  d.innerHTML = `<span>${name}</span><span class="${ok ? 'ok' : 'bad'}">${ok ? 'ja' : 'nein'}${note ? ' (' + note + ')' : ''}</span>`;
+  $('caps').appendChild(d);
+}
+cap('Sichere Verbindung (HTTPS oder localhost)', window.isSecureContext, location.protocol + '//' + location.host);
+cap('Vorlesen (speechSynthesis)', 'speechSynthesis' in window);
+cap('Spracherkennung (SpeechRecognition)', !!SR);
+cap('localStorage', (() => { try { localStorage.setItem('t','1'); localStorage.removeItem('t'); return true; } catch { return false; } })());
+log('Browser: ' + navigator.userAgent);
+
+let voices = [];
+function loadVoices() {
+  voices = speechSynthesis.getVoices().filter(v => v.lang.toLowerCase().startsWith('fr'));
+  $('voice').innerHTML = voices.length
+    ? voices.map((v, i) => `<option value="${i}">${v.name} (${v.lang})</option>`).join('')
+    : '<option>keine französische Stimme gefunden</option>';
+  log('Französische Stimmen: ' + voices.map(v => v.name + ' ' + v.lang).join(', '));
+}
+if ('speechSynthesis' in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function speak(text) {
+  if (!('speechSynthesis' in window)) { log('Kein Vorlesen verfügbar'); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  const v = voices[$('voice').value];
+  u.lang = v ? v.lang : 'fr-FR';
+  if (v) u.voice = v;
+  u.rate = 0.85;
+  u.onerror = (e) => log('Vorlesefehler: ' + e.error);
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+$('speakBtn').onclick = () => speak('Je vais à la piscine.');
+$('speakBtn2').onclick = () => speak('joyeux, joyeuse');
+
+$('recBtn').onclick = () => {
+  if (!SR) { $('recOut').textContent = 'Spracherkennung nicht verfügbar.'; return; }
+  const r = new SR();
+  r.lang = 'fr-FR';
+  r.interimResults = false;
+  r.maxAlternatives = 3;
+  r.onstart = () => { $('recOut').textContent = 'Ich höre zu …'; };
+  r.onresult = (e) => {
+    const alts = Array.from(e.results[0]).map(a => `${a.transcript} (${Math.round(a.confidence * 100)}%)`);
+    $('recOut').textContent = 'Verstanden: ' + alts.join(' | ');
+    log('Erkannt: ' + alts.join(' | '));
+  };
+  r.onerror = (e) => { $('recOut').textContent = 'Fehler: ' + e.error; log('Erkennungsfehler: ' + e.error); };
+  r.onend = () => log('Erkennung beendet');
+  try { r.start(); } catch (err) { log('Start fehlgeschlagen: ' + err); }
+};
+</script>
+</body>
+</html>
