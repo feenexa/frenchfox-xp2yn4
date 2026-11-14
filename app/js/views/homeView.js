@@ -1,7 +1,7 @@
 // Startseite: Lernziel wählen, Richtung wählen, losgehen.
 
 import { h, progressBar, mascot } from '../ui.js';
-import { pickSession, learnedShare, isDue, keyOf } from '../srs.js';
+import { pickSession, learnedShare, isDue, keyOf, roundSize, roundSteps } from '../srs.js';
 import { canSpeak } from '../speech.js';
 import { levelInfo, streakFor, dayKey, formatDay } from '../score.js';
 import { readiness, countdownText } from '../prep.js';
@@ -9,8 +9,6 @@ import { LEGAL_NOTICE } from '../help.js';
 
 const isStandalone = () => window.navigator.standalone === true || window.matchMedia?.('(display-mode: standalone)').matches;
 const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-const SESSION_SIZE = 10;
 
 export function renderHome(root, ctx) {
   const { store, scopes, show } = ctx;
@@ -73,7 +71,7 @@ export function renderHome(root, ctx) {
   }
 
   function render() {
-    const { direction, sound, answerMode } = settings();
+    const { direction, sound, answerMode, roundSize: sizeSetting } = settings();
     const mode = answerMode === 'type' || answerMode === 'cards' ? answerMode : 'choice';
     const scope = scopes.find((s) => s.id === scopeId);
     const srs = store.get().srs;
@@ -137,6 +135,27 @@ export function renderHome(root, ctx) {
     const seg = (label, active, onClick, extra = {}) =>
       h('button', { class: 'seg', 'aria-pressed': active, onClick, ...extra }, label);
 
+    // Wie viele Wörter pro Runde: Schieberegler in Fünferschritten, ganz rechts die ganze Liste.
+    const sizeChoice = (total, setting) => {
+      const steps = roundSteps(total);
+      if (!steps.length) return null; // sehr kleine Liste: es gibt nur «Alle»
+      const current = roundSize(setting, total);
+      let index = steps.findIndex((n) => n >= current);
+      if (index < 0) index = steps.length - 1;
+      const text = (n) => (n >= total ? `Alle (${total})` : `${n} von ${total}`);
+      const output = h('span', { class: 'slider-value' }, text(steps[index]));
+      const input = h('input', {
+        type: 'range', class: 'slider', min: 0, max: steps.length - 1, step: 1, value: index,
+        'aria-label': 'Wie viele Wörter pro Runde',
+        onInput: () => { output.textContent = text(steps[Number(input.value)]); input.setAttribute('aria-valuetext', output.textContent); },
+        onChange: () => { const n = steps[Number(input.value)]; setSetting({ roundSize: n >= total ? 'all' : n }); },
+      });
+      input.setAttribute('aria-valuetext', output.textContent);
+      return h('div', {},
+        h('div', { class: 'field-label slider-head' }, h('span', {}, 'Wie viele Wörter?'), output),
+        input);
+    };
+
     const page = h('div', { class: 'home' },
       h('header', { class: 'topbar' },
         h('div', { class: 'brand' }, h('span', { class: 'fox', 'aria-hidden': 'true' }, mascot()), h('span', {}, 'FrenchFox')),
@@ -166,10 +185,12 @@ export function renderHome(root, ctx) {
               seg('Auswählen', mode === 'choice', () => { setSetting({ answerMode: 'choice' }); render(); }),
               seg('Tippen', mode === 'type', () => { setSetting({ answerMode: 'type' }); render(); }),
               seg('Karteikarten', mode === 'cards', () => { setSetting({ answerMode: 'cards' }); render(); }))),
+          sizeChoice(scope.items.length, sizeSetting),
           h('button', {
             class: 'btn btn-primary btn-big',
             onClick: () => {
-              const items = pickSession(scope.items, direction, store.get().srs, Date.now(), { size: SESSION_SIZE });
+              const size = roundSize(settings().roundSize, scope.items.length);
+              const items = pickSession(scope.items, direction, store.get().srs, Date.now(), { size });
               show('quiz', { items, direction, mode });
             },
           }, 'Los geht’s'),

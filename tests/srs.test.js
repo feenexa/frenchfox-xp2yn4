@@ -103,3 +103,24 @@ test('boxCounts und learnedShare', () => {
   assert.equal(learnedShare(items, dir, st), 1 / 12);
   assert.equal(learnedShare([], dir, st), 0);
 });
+
+test('Rundengrösse: Zahl, «alle», zu gross, unbekannte Werte', async () => {
+  const { roundSize } = await import('../app/js/srs.js');
+  assert.equal(roundSize(10, 89), 10);
+  assert.equal(roundSize('all', 89), 89);
+  assert.equal(roundSize(20, 18), 18);
+  for (const bad of [undefined, null, 'x', 0, -3, 2.5]) assert.equal(roundSize(bad, 30), 30, String(bad));
+  const items = Array.from({ length: 25 }, (_, i) => ({ id: `t-${i}` }));
+  const all = pickSession(items, 'de-fr', {}, Date.now(), { size: roundSize('all', items.length) });
+  assert.equal(all.length, 25);
+  assert.equal(new Set(all.map((i) => i.id)).size, 25);
+});
+
+test('Schieberegler-Stufen: Fünferschritte, am Ende die ganze Liste', async () => {
+  const { roundSteps } = await import('../app/js/srs.js');
+  assert.deepEqual(roundSteps(18), [5, 10, 15, 18]);
+  assert.deepEqual(roundSteps(20), [5, 10, 15, 20]);
+  assert.equal(roundSteps(130).at(-1), 130);
+  assert.deepEqual(roundSteps(5), []);
+  assert.deepEqual(roundSteps(0), []);
+});

@@ -22,7 +22,7 @@ export function renderHelp(root, ctx) {
       h('section', { class: 'panel help-section' },
         h('h2', {}, 'So übst du'),
         list([
-          'Wähle auf der Startseite, was du üben willst (Lernziel oder alles), die Richtung und die Übungsart. Dann tippe auf «Los geht’s». Eine Runde hat 10 Wörter.',
+          'Wähle auf der Startseite, was du üben willst (Lernziel oder alles), die Richtung und die Übungsart. Mit dem Schieberegler wählst du, wie viele Wörter drankommen (ganz rechts sind es alle). Dann tippe auf «Los geht’s». Fällige und neue Wörter kommen zuerst dran.',
           'Auswählen: Du siehst ein Wort und vier Antworten. Tippe die richtige an. Mit den Tasten 1 bis 4 geht es auch.',
           'Tippen: Schreibe die Antwort. Akzente und Umlaute schreibst du mit der Tastatur. Fehlt nur ein Akzent oder bei einem Nomen der Artikel (der, die, das, le, la, l’ …), heisst es «Fast richtig». Ein falscher Artikel ist aber falsch. Mit «Weiss ich nicht» siehst du die Lösung.',
           'Karteikarten: Tippe auf die Karte, um sie umzudrehen. Dann tippst du «Gewusst» oder «Nochmal». Du kannst auch wischen: nach rechts heisst «Gewusst», nach links «Nochmal». Mit der Tastatur dreht die Leertaste um, und die Pfeiltasten bewerten.',

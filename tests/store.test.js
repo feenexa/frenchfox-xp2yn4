@@ -133,3 +133,8 @@ test('reset leert den Fortschritt', () => {
   store.reset();
   assert.deepEqual(store.get(), emptyData());
 });
+
+test('Alter Stand ohne Rundengrösse: Standard bleibt 10, eine gewählte Wahl bleibt erhalten', () => {
+  assert.equal(migrate({ version: 3, settings: { sound: false } }).settings.roundSize, 10);
+  assert.equal(migrate({ version: 3, settings: { roundSize: 'all' } }).settings.roundSize, 'all');
+});

@@ -19,7 +19,7 @@ export function emptyData() {
     points: 0,
     daily: { day: '', points: 0 }, // heute erzielte Punkte (Tageslimit)
     prep: { scopes: [], date: null, streak: {}, lastProbe: null }, // Testvorbereitung
-    settings: { direction: 'de-fr', answerMode: 'choice', sound: true, scope: 'all' },
+    settings: { direction: 'de-fr', answerMode: 'choice', sound: true, scope: 'all', roundSize: 10 },
   };
 }
 

@@ -61,6 +61,28 @@ export function needsPractice(entry, now = Date.now()) {
 }
 
 /**
+ * Wie viele Wörter eine Runde hat: 'all' oder eine Zahl, höchstens so viele wie vorhanden.
+ * Unbekannte Werte (alter Stand, kaputte Daten) gelten als «alle».
+ */
+export function roundSize(setting, total) {
+  const n = Number(setting);
+  if (setting === 'all' || !Number.isInteger(n) || n < 1) return total;
+  return Math.min(n, total);
+}
+
+/**
+ * Stufen des Schiebereglers für die Rundengrösse: 5, 10, 15 … und zuletzt die ganze Liste.
+ * Bei höchstens 5 Wörtern gibt es nichts zu wählen (leere Liste).
+ */
+export function roundSteps(total, step = 5) {
+  if (total <= step) return [];
+  const steps = [];
+  for (let n = step; n < total; n += step) steps.push(n);
+  steps.push(total);
+  return steps;
+}
+
+/**
  * Wählt die Wörter für eine Runde: fällige zuerst, dazu einige neue,
  * Rest mit den am frühesten fälligen. Reihenfolge gemischt.
  */
